@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Дашборд анализа вакансий — Презентация</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Segoe UI', Tahoma, sans-serif; background: #1a1a2e; color: #fff; }
+  .slide {
+    width: 100%; height: 100vh;
+    display: flex; flex-direction: column;
+    justify-content: center; align-items: center;
+    padding: 60px 80px;
+    page-break-after: always;
+  }
+  .slide:nth-child(odd) { background: linear-gradient(135deg, #0f0c29, #302b63, #24243e); }
+  .slide:nth-child(even) { background: linear-gradient(135deg, #141e30, #243b55); }
+  h1 { font-size: 2.8em; margin-bottom: 20px; text-align: center; }
+  h2 { font-size: 2em; margin-bottom: 30px; color: #7ec8e3; }
+  h3 { font-size: 1.3em; margin-bottom: 15px; color: #a0d2db; }
+  p, li { font-size: 1.2em; line-height: 1.8; }
+  ul { list-style: none; padding-left: 0; }
+  ul li::before { content: "▸ "; color: #7ec8e3; font-weight: bold; }
+  .subtitle { font-size: 1.3em; color: #aaa; margin-top: 10px; }
+  .tag {
+    display: inline-block; background: #7ec8e3; color: #1a1a2e;
+    padding: 5px 14px; border-radius: 20px; margin: 4px;
+    font-size: 0.95em; font-weight: 600;
+  }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; width: 100%; max-width: 1000px; }
+  .card {
+    background: rgba(255,255,255,0.07); border-radius: 12px;
+    padding: 25px; border: 1px solid rgba(255,255,255,0.1);
+  }
+  .card h3 { margin-top: 0; }
+  .num { font-size: 3em; font-weight: 700; color: #7ec8e3; }
+  .footer { position: absolute; bottom: 20px; font-size: 0.8em; color: #555; }
+  code {
+    background: rgba(255,255,255,0.1); padding: 2px 8px;
+    border-radius: 4px; font-size: 1em;
+  }
+  .highlight { color: #7ec8e3; font-weight: 600; }
+  .cmd-block {
+    background: #0d1117; border: 1px solid #30363d; border-radius: 8px;
+    padding: 20px 25px; font-family: 'Courier New', monospace;
+    font-size: 1.05em; line-height: 1.7; margin-top: 15px; width: 100%;
+    max-width: 800px;
+  }
+  .cmd-block .comment { color: #6a737d; }
+  .cmd-block .cmd { color: #79c0ff; }
+</style>
+</head>
+<body>
+
+<!-- СЛАЙД 1: Титульный -->
+<div class="slide">
+  <h1>Дашборд анализа вакансий</h1>
+  <p class="subtitle">Инфраструктура и DevOps — Вариант 5</p>
+  <p style="margin-top:30px; color:#888;">Применение метода системного анализа<br>к информационным системам предприятия</p>
+  <div class="footer">Контрольная работа — Практическая часть</div>
+</div>
+
+<!-- СЛАЙД 2: Задача и данные -->
+<div class="slide">
+  <h2>Задача и данные</h2>
+  <div class="grid">
+    <div class="card">
+      <h3>Исходные данные</h3>
+      <ul>
+        <li>543 МБ JSON — вакансии HeadHunter</li>
+        <li>SQLite база: 2096 вакансий</li>
+        <li>5 профессий (Категория 4)</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Профессии</h3>
+      <div style="margin-top:10px;">
+        <span class="tag">DevOps</span>
+        <span class="tag">SysAdmin</span>
+        <span class="tag">Cloud Eng.</span>
+        <span class="tag">SRE</span>
+        <span class="tag">Network Eng.</span>
+      </div>
+    </div>
+  </div>
+  <div class="card" style="width:100%; max-width:1000px; margin-top:25px;">
+    <h3>Этапы обработки</h3>
+    <ul>
+      <li>Парсинг JSONL → фильтрация по категориям → загрузка в БД</li>
+      <li>Классификация по названию → извлечение навыков → определение грейда</li>
+      <li>TF-IDF + cosine similarity для поиска релевантных вакансий</li>
+    </ul>
+  </div>
+</div>
+
+<!-- СЛАЙД 3: Архитектура и функционал -->
+<div class="slide">
+  <h2>Архитектура приложения</h2>
+  <div class="grid">
+    <div class="card">
+      <h3>Стек технологий</h3>
+      <ul>
+        <li><strong>Frontend:</strong> Streamlit + Plotly</li>
+        <li><strong>Backend:</strong> Python 3.11</li>
+        <li><strong>БД:</strong> SQLite</li>
+        <li><strong>ML:</strong> scikit-learn (TF-IDF)</li>
+        <li><strong>Деплой:</strong> Docker</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>4 блока дашборда</h3>
+      <ul>
+        <li>Общие сведения о выборке</li>
+        <li>Типовая вакансия по профессии</li>
+        <li>Классы вакансий (обобщение)</li>
+        <li>Поиск по навыкам работника</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- СЛАЙД 4: Результаты -->
+<div class="slide">
+  <h2>Результаты</h2>
+  <div class="grid">
+    <div class="card" style="text-align:center;">
+      <div class="num">2096</div>
+      <p>вакансий в базе</p>
+    </div>
+    <div class="card" style="text-align:center;">
+      <div class="num">94%</div>
+      <p>покрытие тестами</p>
+    </div>
+    <div class="card" style="text-align:center;">
+      <div class="num">5</div>
+      <p>профессий анализируется</p>
+    </div>
+    <div class="card" style="text-align:center;">
+      <div class="num">4</div>
+      <p>блока дашборда</p>
+    </div>
+  </div>
+  <div class="card" style="width:100%; max-width:1000px; margin-top:25px;">
+    <h3>Ключевые возможности</h3>
+    <ul>
+      <li>Автоматическая классификация вакансий по 5 профессиям</li>
+      <li>Извлечение зарплаты с фильтрацией ложных срабатываний</li>
+      <li>Разделение описания на Требования / Обязанности / Условия</li>
+      <li>Поиск вакансий по навыкам с расчётом процента совпадения</li>
+    </ul>
+  </div>
+</div>
+
+<!-- СЛАЙД 5: Запуск -->
+<div class="slide">
+  <h2>Запуск приложения</h2>
+  <div class="cmd-block">
+    <span class="comment"># Клонировать репозиторий</span><br>
+    <span class="cmd">git clone https://github.com/rendonett/tssa_project.git</span><br>
+    <span class="cmd">cd tssa_project</span><br><br>
+    <span class="comment"># Собрать Docker-образ</span><br>
+    <span class="cmd">docker build -t vacancy-dashboard .</span><br><br>
+    <span class="comment"># Запустить</span><br>
+    <span class="cmd">docker run -p 8501:8501 vacancy-dashboard</span><br><br>
+    <span class="comment"># Открыть в браузере</span><br>
+    <span class="cmd">http://localhost:8501</span>
+  </div>
+  <p style="margin-top:30px; color:#aaa;">Работает на Windows, Linux, macOS — достаточно установленного Docker</p>
+</div>
+
+</body>
+</html>
