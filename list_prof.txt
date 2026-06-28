@@ -1,0 +1,37 @@
+Категория 1. Веб-разработка (5 профессий)
+	1. Backend-разработчик (Python)
+	2. Backend-разработчик (Java)
+	3. Backend-разработчик (Go)
+	4. Frontend-разработчик (React / Vue)
+	5. Fullstack-разработчик
+Категория 2. Разработка (3 профессии)
+	6. Mobile-разработчик (iOS)
+	7. Mobile-разработчик (Android)
+	8. Embedded-разработчик
+Категория 3. Тестирование и автоматизация (4 профессии)
+	9. Manual QA Engineer
+	10. Automation QA Engineer (Python/JS)
+	11. Performance QA Engineer (нагрузочное тестирование)
+	12. QA Lead / Тест-менеджер
+Категория 4. Инфраструктура и DevOps (5 профессий)
+	13. DevOps-инженер
+	14. System Administrator (Linux)
+	15. Cloud Engineer (AWS / Yandex Cloud)
+	16. SRE (Site Reliability Engineer)
+	17. Network Engineer (сетевой инженер)
+Категория 5. Данные и аналитика (5 профессий)
+	18. Data Analyst
+	19. Data Scientist
+	20. Data Engineer
+	21. ML Engineer
+	22. BI Analyst (Power BI / Tableau)
+Категория 6. Информационная безопассть (4 профессии)
+	23. Penetration Tester (пентестер)
+	24. Information Security Analyst (аналитик ИБ)
+	25. SOC Analyst
+	26.GRC Specialist (риски и комплаенс)
+Категория 7. Управление, аналитика и сопровождение (4 профессии)
+	27. System Analyst
+	28. IT Project Manager
+	29. Product Manager (IT)
+	30. Technical Writer
