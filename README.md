@@ -17,23 +17,91 @@
 3. **Классы вакансий** — распределение по грейдам (Junior/Middle/Senior/Lead), обобщённый профиль
 4. **Поиск по навыкам** — TF-IDF cosine similarity для поиска 5 наиболее подходящих вакансий
 
-## Развертывание
+## Быстрый старт
 
-### Docker
+### Вариант 1: Docker (рекомендуется)
+
+#### Установка Docker
+
+**Windows / macOS:**
+1. Скачать и установить [Docker Desktop](https://www.docker.com/products/docker-desktop/)
+2. Запустить Docker Desktop (иконка в трее)
+
+**Linux (Ubuntu/Debian):**
+```bash
+sudo apt update && sudo apt install -y docker.io
+sudo systemctl enable --now docker
+sudo usermod -aG docker $USER
+# перелогинься для применения
+```
+
+**Linux (Arch/Manjaro):**
+```bash
+sudo pacman -S docker
+sudo systemctl enable --now docker
+sudo usermod -aG docker $USER
+```
+
+#### Настройка зеркала (если Docker Hub не доступен)
+
+Если `docker build` зависает или выдаёт ошибку сети — настрой зеркало:
+
+**Linux:**
+```bash
+sudo mkdir -p /etc/docker
+echo '{"registry-mirrors": ["https://mirror.gcr.io"]}' | sudo tee /etc/docker/daemon.json
+sudo systemctl restart docker
+```
+
+**Windows (Docker Desktop):**
+1. Открыть Docker Desktop → Settings → Docker Engine
+2. В JSON-конфиг добавить:
+```json
+{
+  "registry-mirrors": ["https://mirror.gcr.io"]
+}
+```
+3. Нажать "Apply & Restart"
+
+#### Сборка и запуск
 
 ```bash
+git clone https://github.com/rendonett/tssa_project.git
+cd tssa_project
 docker build -t vacancy-dashboard .
 docker run -p 8501:8501 vacancy-dashboard
 ```
 
-Приложение доступно по адресу: http://localhost:8501
+Открыть: http://localhost:8501
 
-### Локально
+---
+
+### Вариант 2: Без Docker (локально)
+
+#### Установка Python
+
+**Windows:**
+1. Скачать Python 3.11+ с [python.org](https://www.python.org/downloads/)
+2. При установке отметить галочку **"Add Python to PATH"**
+
+**Linux:**
+```bash
+sudo apt install python3 python3-pip    # Ubuntu/Debian
+sudo pacman -S python python-pip         # Arch
+```
+
+#### Запуск
 
 ```bash
+git clone https://github.com/rendonett/tssa_project.git
+cd tssa_project
 pip install -r requirements.txt
 streamlit run app.py
 ```
+
+Открыть: http://localhost:8501
+
+---
 
 ## Структура проекта
 
@@ -46,6 +114,7 @@ streamlit run app.py
 | `hh_raw_vacancies.jsonl` | Исходные данные HeadHunter |
 | `requirements.txt` | Зависимости Python |
 | `Dockerfile` | Конфигурация Docker |
+| `presentation.html` | Презентация (5 слайдов) |
 
 ## Тестирование
 
