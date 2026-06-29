@@ -114,7 +114,6 @@ streamlit run app.py
 | `hh_raw_vacancies.jsonl` | Исходные данные HeadHunter |
 | `requirements.txt` | Зависимости Python |
 | `Dockerfile` | Конфигурация Docker |
-| `presentation.html` | Презентация (5 слайдов) |
 
 ## Тестирование
 
